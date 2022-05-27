@@ -14,6 +14,7 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 import java.math.BigDecimal;
+import java.util.Random;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,17 +29,18 @@ class BeerControllerTest {
     MockMvc mockMvc;
     @Autowired
     ObjectMapper objectMapper;
+
     @Test
     void getBeerById() throws Exception {
 
         mockMvc.perform(get(API_V_1_BEER + UUID.randomUUID()).accept(MediaType.APPLICATION_JSON))
-                 .andExpect(status().isOk());
+                .andExpect(status().isOk());
     }
 
     @Test
     void saveNewBeer() throws Exception {
 
-        BeerDto beerDto = BeerDto.builder().build();
+        BeerDto beerDto = validBeerDto();
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
 
         mockMvc.perform(post("/api/v1/beer/")
@@ -50,7 +52,7 @@ class BeerControllerTest {
     @Test
     void updateBeer() throws Exception {
 
-        BeerDto beerDto = BeerDto.builder().build();
+        BeerDto beerDto = validBeerDto();
 
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
         System.out.println(beerDtoJson);
@@ -63,6 +65,16 @@ class BeerControllerTest {
 
     @Test
     void deleteBeer() {
+    }
+
+
+    BeerDto validBeerDto() {
+        return BeerDto.builder()
+                .beerName("Gin")
+                .beerStyle(BeerStyle.GOSE)
+                .price(new BigDecimal(10))
+                .upc(1223132414L)
+                .build();
     }
 
 

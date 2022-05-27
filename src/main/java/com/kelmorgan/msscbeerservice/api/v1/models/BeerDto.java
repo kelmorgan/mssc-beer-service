@@ -25,7 +25,8 @@ public class BeerDto {
     private OffsetDateTime lastModifiedDate;
     @NotBlank
     private String beerName;
-    @NotBlank
+
+    @NotNull
     private BeerStyle beerStyle;
 
     private Integer quantityOnHand;
