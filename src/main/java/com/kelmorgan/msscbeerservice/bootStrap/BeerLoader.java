@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -53,8 +54,8 @@ public class BeerLoader implements CommandLineRunner {
                 .upc(BEER_3_UPC)
                 .build();
 
-        beerRepository.save(b1);
-        beerRepository.save(b2);
-        beerRepository.save(b3);
+        List<Beer> beers = List.of(b1,b2,b3);
+
+        beerRepository.saveAll(beers);
     }
 }
