@@ -1,4 +1,4 @@
-package com.kelmorgan.msscbeerservice.domain.repositories;
+package com.kelmorgan.msscbeerservice.repositories;
 
 import com.kelmorgan.msscbeerservice.domain.Beer;
 import org.springframework.data.jpa.repository.JpaRepository;
