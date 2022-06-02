@@ -1,5 +1,6 @@
 package com.kelmorgan.msscbeerservice.api.v1.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
 
@@ -17,12 +18,18 @@ public class BeerDto {
 
     @Null
     private UUID id;
+
     @Null
     private Integer version;
+
     @Null
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", shape = JsonFormat.Shape.STRING)
     private OffsetDateTime createdDate;
+
     @Null
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", shape = JsonFormat.Shape.STRING)
     private OffsetDateTime lastModifiedDate;
+
     @NotBlank
     private String beerName;
 
@@ -30,6 +37,8 @@ public class BeerDto {
     private BeerStyle beerStyle;
 
     private Integer quantityOnHand;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @NotNull
     @Positive
     private BigDecimal price;
